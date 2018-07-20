@@ -1,0 +1,87 @@
+body,
+html {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #eee;
+	font-size: 15px;
+}
+
+h2 {
+	margin: 5px 0;
+	font-family: Arial, sans-serif;
+	font-weight: normal;
+	font-size: 13px;
+}
+
+#form-1, #form-2 {
+	padding: 10px;
+	width: 300px;
+	margin: 50px auto;
+	background: gray;
+}
+
+#form-2 {
+	display: none;
+}
+
+#total-price {
+	width: 45%;
+	margin-right: 10%;
+	display: inline-block;
+	margin: 0;
+	height: 14px;
+	background: white;
+	padding: 5px;
+}
+
+#total-price, button {
+	display: inline-block;
+	vertical-align: top;
+}
+
+select {
+	width: 153px;
+}
+
+.one {
+	margin: 3px 0;
+}
+
+input[type="submit"] {
+	width: 153px;
+}
+
+#next {
+	height: 24px;
+	width: 45%;
+}
+
+/*
+if(input[name=name].toString() < 0) {
+			$(input[name=name]).text("Введите значение поля");
+		}
+		else if(input[name=email].toString() < 0) {
+			$(input[name=name]).text("Введите значение поля);
+		}
+		else if(input[name=phone].toString() < 0) {
+			$(input[name=name]").text("Введите значение поля);
+		}
+		else {
+			return "";
+		}
+	});
+*/
+
+.red-block-1,
+.red-block-2,
+.red-block-3 {
+	width: 140px;
+	font-size: 13px;
+	padding: 5px;
+	color: red;
+	border: 1px solid red;
+	display: none;
+}

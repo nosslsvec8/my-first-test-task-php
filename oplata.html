@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript-3</title>
+	
+    <link rel="stylesheet" href="style/oplata_styles.css">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+
+
+</head>
+<body>
+
+<div id="form-1">
+
+	<h2 id="text">Введите Имя</h2>
+	<input class="name" type="text" name="name"><br>
+	<div class="red-block-1">Введите значение поля</div>
+	
+	<h2>Введите Email</h2>	
+	<input class="email" type="text" name="email"><br>
+	<div class="red-block-2">Введите значение поля</div>
+	
+	<h2>Введите Телефон</h2>
+	<input class="phone" type="text" name="phone"><br>
+	<div class="red-block-3">Введите значение поля</div>
+	
+	<h2>Выберите Способ оплаты</h2>
+	<select class="selectpicker" id="list" data-live-search="true" multiple>
+		<option id="sum-1" value="100000">Visa %2</option>
+		<option id="sum-2" value="50000">Privat24 %2.5</option>
+		<option id="sum-3" value="5000">Wester Union 3%</option>
+		<option id="sum-4" value="50">Paypal 1.5%</option>
+	</select>
+	<br>
+	<h2>Общая стоимость</h2>
+	<p id="total-price"></p>
+	<button id="next">Продолжить</button>
+		
+</div>
+
+	
+<div id="form-2">
+
+	<input type="radio" name="payment" value="visa" checked>Visa
+	<input type="radio" name="payment" value="westernunion">WesternUnion
+	<input type="radio" name="payment" value="westernunion">Privat24
+	<input type="radio" name="payment" value="westernunion">Paypal
+	<br>
+	<p>Введите номер карты</p>
+	<input id ="cardnumber" type="text" name="cardnumber">
+	<p>Введите CVV карты</p>
+	<input id ="cvv" type="text" name="cvv">	
+	<p>Введите expire date карты</p>
+	<input id ="expiredate" type="text" name="expire-date">
+	<br><br>
+	<input type="submit" value="OK" name="konpk" OnClick="konpk();">
+	<script>
+
+        function konpk()
+        {
+            document.write('<p>Ваша Оплата была помещена в обработку!</p>');
+        }
+	</script>
+	
+</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
+  crossorigin="anonymous">
+ </script>
+ 
+ <script src="js/bootstrap-dropdown.js"></script>
+ 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+ 
+ <link rel="stylesheet" href="styles/bootstrap.min.css">
+ 
+ <script>
+
+ $("document").ready(function (){
+ 
+ var myData = {};
+ 
+	$("#next").on("click", function() {
+	
+	var name = $(".name").val().length;
+	var email = $(".email").val().length;
+	var phone = $(".phone").val().length;
+	
+		if(name === 0) {
+			$(".red-block-1").css("display","block");
+		}
+		
+		if(email === 0) {
+			$(".red-block-2").css("display","block");
+		}
+		
+		if(phone === 0) {
+			$(".red-block-3").css("display","block");
+		}
+		
+		if(name, email, phone > 0 ){
+			$('#form-1').css('display','none');
+			$('#form-2').css('display','block');
+		}
+		
+		myData.contacts = {
+			name: $('.name').val(),
+			email: $('.email').val(),
+			phone: $('.phone').val()
+		};
+		
+
+		
+		
+	});
+	
+	$('#list').change(function(){
+		
+		var numberPattern = /\d+/g;
+
+ 		var namePattern = /[a-zA-Zа-яА-Я]+/g;		
+			
+		if( $("#list").parent().find('li.selected').length > 0 ){
+
+			let prices = $("#list").parent().find('li.selected').text().match( numberPattern );
+			
+			let names = $("#list").parent().find('li.selected').text().match( namePattern );
+			
+			let totalPrice = 0;
+			
+			myData.auto = names;
+
+			for( let price of prices ){
+				totalPrice += parseInt(price);
+			}
+
+			$("#total-price").text( totalPrice );
+
+
+		}else{
+			$("#total-price").text( '' );
+		}
+		
+		myData.totalprice = $('#total-price').text();
+	});
+	
+
+	$('input[type=submit]').on('click', function(){
+		myData.cards = {
+			cardnumber: $('#cardnumber').val(),
+			cardcvv: $('#cvv').val(),
+			expiredate: $('#expiredate').val()
+	    };
+		
+		myData.cardtype = $('input[type=radio]:checked').val();
+	
+	console.log(myData);
+	});
+
+
+
+	
+});
+ 
+ </script>
+</body>
+</html>
